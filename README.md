@@ -19,6 +19,7 @@ of the system together and controlling scanflow (see scanflow)
 2. Control blocks -- devices that serve as configurable control terminals for the Grid
 3. Senders -- devices that send items
 4. Receivers -- devices that receive items
+5. Requesters -- devices that allow requesting a particular item from the grid.
 
 There are also variations of these.
 
@@ -154,6 +155,12 @@ Output:
 - `<short grid info>` -- Some technical info about the Grid, its id, the length of the glass tubes and the amount of receivers
 - `<owner>` -- Who's the Grid owner
 
+Scanflow:
+
+Grid scanning is implemented with an algorithms that walks the tubes from the Control Block it was executed on.
+This phenomenon is nicknamed "Scanflow" and it influences the order in which devices are added to the Grid.
+For Receivers that means establishing an order in which they attempt to receive an item that is being sent.
+
 ------------------------------------------------------------------------------------------------------------------------
 
 #### Control Device: Name
@@ -199,7 +206,12 @@ An advanced command used for detailed parametrization of grid workings.
 <params>
 ```
 
-All lines take in arguments. Currently no docs are available.
+All lines take in parameters.
+
+Currently implemented parameters:
+
+- `ddm:<t|f>` -- Enables or disables Dynamic Device Modification. When that setting is on some devices can be added, removed
+and modified without turning the Grid off or re-scanning it.
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -212,7 +224,7 @@ as a tube Sender device if it is:
 2. Has an inventory block in front of it, for example a Chest.
 3. Has a Control Sign on it that describes and configures the device.
 
-Sender Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
+If Dynamic Device Modification is on, Sender Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
 
 ##### Sender Device Sign Commands
 
@@ -245,7 +257,7 @@ as a tube Receiver device if it is:
 2. Has an inventory block in front of it, for example a Chest.
 3. Has a Control Sign on it that describes and configures the device.
 
-Receiver Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
+If Dynamic Device Modification is on, Receiver Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
 
 ##### Receiver Device Sign Commands
 
@@ -312,7 +324,7 @@ as a tube Requester device if it is:
 2. Has an inventory block in front of it, for example a Chest.
 3. Has a Control Sign on it that describes and configures the device.
 
-Requester Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
+If Dynamic Device Modification is on, Requester Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
 
 ##### Requester Device Sign Commands
 
