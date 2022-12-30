@@ -284,34 +284,25 @@ Lines:
 
 #### Overflow Device
 
-Receivers are Grid Elements that are responsible for receiving items from the Grid.
-The central block of a Receiver tube device is the Receiver Piston, which is just a normal Minecraft Piston. It is recognized
-as a tube Receiver device if it is:
+Overflow is a device that collects everything that doesn't fit into other specified receivers.
+The central block of an Overflow tube device is the same as for the Receiver Piston, which is just a normal Minecraft Piston. It is recognized
+as a tube Overflow Device if it is:
 1. Connected to a Grid by a Glass Tube
 2. Has an inventory block in front of it, for example a Chest.
 3. Has a Control Sign on it that describes and configures the device.
 
-
 ##### Overflow Device Sign Commands
 
-All Receiver Piston Control Signs first line must be one of the following:
+All Overflow Piston Control Signs first line must be one of the following:
 
 ```
-[tube]
+[tube:overflow]
 <empty-line>
-<item-name>
+<empty-line>
 <empty-line>
 
 ```
 
-The command is simply `[tube]` because in this case the Receiver Device is automatically configured with the simplest configuration possible.
-This option is provided for simplicity because the amount of receivers in a system is assumed to be high.
-In this case only the line 2 plays any role, and it must contain the filter for which items to receive.
-
-
-Lines:
-
-- `<item-name>` -- the name of the item that's intended to be put into this receiver
 
 ------------------------------------------------------------------------------------------------------------------------
 
