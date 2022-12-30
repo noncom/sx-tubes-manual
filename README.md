@@ -56,27 +56,30 @@ There are two ways to configure and control a Grid:
 The owner of a Grid automatically possesses all permissions. However, to any other player the permissions must
 be given separately either by the owner or by another player who has the permission to alter permissions.
 
+Altering permissions for a particular player is possible with `/tubes-trust` and `/tubes-untrust` commands.
+
 Currently there are the following permissions:
 
 ---
 
-| Permission                          | Meaning                                                                                                                                                                           |
-|-------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `ALLOW_SCAN`                        | allow to re-scan the Grid                                                                                                                                                         |
-| `ALLOW_REMOVE`                      | allow to remove the Grid                                                                                                                                                          |
-| `ALLOW_RENAME`                      | allow to rename the Grid                                                                                                                                                          |
-| `ALLOW_CONFIGURE`                   | allow the player to execute `[tube:config]` signs (NOT IMPLEMENTED)                                                                                                               |
-| `ALLOW_GET_INFO`                    | allow the player to get grid info via the `/tube-grid-info <grid-id>` console command                                                                                             |
-| `ALLOW_MAKE_OWNER`                  | pass ownership (NOT IMPLEMENTED)                                                                                                                                                  |
-| `ALLOW_ALTER_PERMISSIONS`           | allow the player to change permissions                                                                                                                                            |
-| `ALLOW_CONFIGURE_SEND`              | allow the player to execute `[tube:send]` configuration signs                                                                                                                     |
-| `ALLOW_SEND`                        | (NOT IMPLEMENTED)                                                                                                                                                                 |
-| `ALLOW_REQUEST`                     | allow the player to use `[tube:request]` signs                                                                                                                                    |
-| `ALLOW_OPEN_SEND_INVENTORIES`       | (NOT IMPLEMENTED)                                                                                                                                                                 |
-| `ALLOW_OPEN_RECEIVE_INVENTORIES`    | (NOT IMPLEMENTED)                                                                                                                                                                 |
-| `ALLOW_OPEN_OVERFLOW_INVENTORIES`   | (NOT IMPLEMENTED)                                                                                                                                                                 |
+| Permission                          | Meaning                                                                                                       |
+|-------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| `ALLOW_SCAN`                        | allow to re-scan the Grid                                                                                     |
+| `ALLOW_REMOVE`                      | allow to remove the Grid                                                                                      |
+| `ALLOW_RENAME`                      | allow to rename the Grid                                                                                      |
+| `ALLOW_CONFIGURE`                   | allow the player to execute `[tube:config]` signs (NOT IMPLEMENTED)                                           |
+| `ALLOW_GET_INFO`                    | allow the player to get grid info via the `/tube-grid-info <grid-id>` console command                         |
+| `ALLOW_MAKE_OWNER`                  | pass ownership (NOT IMPLEMENTED)                                                                              |
+| `ALLOW_ALTER_PERMISSIONS`           | allow the player to change permissions                                                                        |
+| `ALLOW_CONFIGURE_SEND`              | allow the player to execute `[tube:send]` configuration signs                                                 |
+| `ALLOW_SEND`                        | (NOT IMPLEMENTED)                                                                                             |
+| `ALLOW_REQUEST`                     | allow the player to use `[tube:request]` signs                                                                |
+| `ALLOW_OPEN_SEND_INVENTORIES`       | allow the player to open inventories of Senders                                                               |
+| `ALLOW_OPEN_RECEIVE_INVENTORIES`    | allow the player to open inventories of Receivers                                                             |
+| `ALLOW_OPEN_REQUEST_INVENTORIES`    | allow the player to open inventories of Requesters                                                            |
+| `ALLOW_OPEN_OVERFLOW_INVENTORIES`   | allow the player to open inventories of Overflows                                                             |
 | `ALLOW_DYNAMIC_DEVICE_MODIFICATION` | allow the player to break signs on certain devices for re-programming them. For this permission to work, the allowance must also be enabled on the Grid via `[tube:config] ddm:t` |
-| `ALLOW_DYNAMIC_TUBE_EXTENSION`      | (NOT IMPLEMENTED)                                                                                                                                                                 |
+| `ALLOW_DYNAMIC_TUBE_EXTENSION`      | (NOT IMPLEMENTED)                                                                                             |
 
 ------------------------------------------------------------------------------------------------------------------------
 
