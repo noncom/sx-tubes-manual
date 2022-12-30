@@ -1,4 +1,4 @@
-### Sx-Tubes
+# Sx-Tubes
 
 A Spigot/Bukkit plugin for PaperMC that enables using configurable pipe systems for managing storage.
 
@@ -7,7 +7,7 @@ The storage and logistics aspect in Minecraft is lacking a lot. The SxTubes syst
 Heavily inspired by Craftbook Pipes but aims to be lighter on the CPU and provide more features. Also some inspiration
 was taken from ChestShop in terms of working with signs.
 
-### Core concepts
+## Core concepts
 
 The Tubes system is setup via building networks made of connecting tubes and various other elements. Such a network
 is called "Grid".
@@ -30,7 +30,7 @@ Creating a Grid consists of:
 All the in-game configuration of a Grid is performed via signs with various commands written on them. See the section
 on Grid Elements and Their Commands for more insight into what blocks support what commands.
 
-#### Building a Grid
+## Building a Grid
 
 1. Build the Senders and the Receivers where you want them, connect with glass Tubes.
 2. Determine where you'd want the control center of your network to be. At minimum it needs to be able to accommodate
@@ -45,13 +45,13 @@ exposed to public places. If the Grid is shut down, all its elements lose protec
 
 Certain Grid Devices allow being reconfigured dynamically, without switching the whole Grid off (see device descriptions).
 
-#### Configuring and Controlling a Grid
+## Configuring and Controlling a Grid
 
 There are two ways to configure and control a Grid:
 1. Control Signs -- this method is used for configuring Grid Elements (blocks) in-place
 2. Console Commands -- this method is used for various administrative commands
 
-#### Permissions
+## Permissions
 
 The owner of a Grid automatically possesses all permissions. However, to any other player the permissions must
 be given separately either by the owner or by another player who has the permission to alter permissions.
@@ -84,7 +84,7 @@ Currently there are the following permissions:
 
 ------------------------------------------------------------------------------------------------------------------------
 
-#### Glass
+## Glass
 
 Serves for constructing the connecting Tubes. Glass does not currently accept any commands but Stained Glass Tubes
 can be used for separating Grids -- differently colored Glass Tubes do not intersect. Use this feature to create
@@ -93,7 +93,7 @@ compact buses of different Grids.
 ------------------------------------------------------------------------------------------------------------------------
 
 
-#### Control Sign
+## Control Sign
 
 A Minecraft Sign that is slapped on one of the Grid Elements and contains one of the valid commands for that type of
 Element. A Sign must be a part of one of the Grid Devices, it doesn't do anything on its own.
@@ -117,7 +117,7 @@ See each command description for details.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-#### Control Device
+## Control Device
 
 Serves as the main port of interaction with the Grid. A Grid requires at least one Control Block to be created.
 
@@ -132,7 +132,7 @@ The base block that represents the Control Block can be configured, but the defa
 Crying Obsidian Block or Iron Block. Selecting the block type allows to naturally gate the ability of a player to build
 and expand Grids depending on their progress in the game.
 
-##### Control Device Sign Commands
+### Control Device Sign Commands
 
 #### Control Device: Scan
 
@@ -215,10 +215,10 @@ and modified without turning the Grid off or re-scanning it.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-#### Sender Device 
+## Sender Device 
 
 Senders are Grid Elements that are responsible for sending items into the Grid.
-The central block of a Sender tube device is the Sender Piston, which is just a normal Minecraft Sticky Piston. It is recognized
+The central block of a Sender tube device is the Sender Piston, which is just a normal __Minecraft Sticky Piston__. It is recognized
 as a tube Sender device if it is:
 1. Connected to a Grid by a Glass Tube
 2. Has an inventory block in front of it, for example a Chest.
@@ -226,7 +226,7 @@ as a tube Sender device if it is:
 
 If Dynamic Device Modification is on, Sender Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
 
-##### Sender Device Sign Commands
+### Sender Device Sign Commands
 
 ```
 [tube:send]
@@ -248,10 +248,10 @@ Also Sender device can be activated by powering it with a Redstone signal.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-#### Receiver Device
+## Receiver Device
 
 Receivers are Grid Elements that are responsible for receiving items from the Grid.
-The central block of a Receiver tube device is the Receiver Piston, which is just a normal Minecraft Piston. It is recognized
+The central block of a Receiver tube device is the Receiver Piston, which is just a normal __Minecraft Piston__. It is recognized
 as a tube Receiver device if it is:
 1. Connected to a Grid by a Glass Tube
 2. Has an inventory block in front of it, for example a Chest.
@@ -259,7 +259,7 @@ as a tube Receiver device if it is:
 
 If Dynamic Device Modification is on, Receiver Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
 
-##### Receiver Device Sign Commands
+### Receiver Device Sign Commands
 
 All Receiver Piston Control Signs first line must be one of the following:
 
@@ -282,16 +282,16 @@ Lines:
 
 ------------------------------------------------------------------------------------------------------------------------
 
-#### Overflow Device
+## Overflow Device
 
 Overflow is a device that collects everything that doesn't fit into other specified receivers.
-The central block of an Overflow tube device is the same as for the Receiver Piston, which is just a normal Minecraft Piston. It is recognized
+The central block of an Overflow tube device is the same as for the Receiver Piston, which is just a normal __Minecraft Piston__. It is recognized
 as a tube Overflow Device if it is:
 1. Connected to a Grid by a Glass Tube
 2. Has an inventory block in front of it, for example a Chest.
 3. Has a Control Sign on it that describes and configures the device.
 
-##### Overflow Device Sign Commands
+### Overflow Device Sign Commands
 
 All Overflow Piston Control Signs first line must be one of the following:
 
@@ -306,10 +306,10 @@ All Overflow Piston Control Signs first line must be one of the following:
 
 ------------------------------------------------------------------------------------------------------------------------
 
-#### Requester Device
+## Requester Device
 
 Requesters are Grid Elements that are responsible for requesting particular items from the whole Grid.
-The central block of a Requester tube device is the Requester Piston, which is just a normal Minecraft Piston. It is recognized
+The central block of a Requester tube device is the Requester Piston, which is just a normal __Minecraft Piston__. It is recognized
 as a tube Requester device if it is:
 1. Connected to a Grid by a Glass Tube
 2. Has an inventory block in front of it, for example a Chest.
@@ -317,7 +317,7 @@ as a tube Requester device if it is:
 
 If Dynamic Device Modification is on, Requester Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
 
-##### Requester Device Sign Commands
+### Requester Device Sign Commands
 
 ```
 [tube:request]
