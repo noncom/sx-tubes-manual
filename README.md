@@ -150,8 +150,8 @@ The first ever command you execute for a Grid. It effectively creates the grid a
 
 The following parameters are supported:
 
-`id` -- an integer to serve as a fixed ID for this grid. If the ID is unavailable, the Grid will not initialize. If this
-parameter is not specialized then every time upon Grid creation it is going to get a new ID.
+`id` -- an integer to serve as a fixed ID for this grid. If the ID is unavailable, the Grid will not initialize. Example: `id:42`. If this
+parameter is not specified then every time upon Grid creation it is going to get a new ID by addng +1 to the last one.
 
 Output:
 
