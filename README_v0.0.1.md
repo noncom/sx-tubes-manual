@@ -9,74 +9,56 @@ was taken from ChestShop in terms of working with signs.
 
 ## Core concepts
 
-The tube system is set up via building a network of devices connected by glass. Such a network is called "Grid".
+The Tubes system is setup via building networks made of connecting tubes and various other elements. Such a network
+is called "Grid".
 
-There are 4 main types of device required for a Grid to operate:
+There are 4 main types of components required for a Grid to operate.
 
-1. **Control blocks** -- Configurable control terminals for the Grid
-2. **Senders** -- send items
-3. **Receivers** -- receive items
-4. **Requesters** -- request a particular item from the Grid
+1. Connecting glass -- all tubes are built from glass and serve their only true purpose -- linking the various parts
+of the system together and controlling scanflow (see scanflow)
+2. Control blocks -- devices that serve as configurable control terminals for the Grid
+3. Senders -- devices that send items
+4. Receivers -- devices that receive items
+5. Requesters -- devices that allow requesting a particular item from the grid.
 
-## Managing a Grid
+There are also variations of these.
 
 Creating a Grid consists of:
 - Building it
 - Configuring it
 
-Use signs with special commands to configure the devices.
+All the in-game configuration of a Grid is performed via signs with various commands written on them. See the section
+on Grid Elements and Their Commands for more insight into what blocks support what commands.
 
 ## Building a Grid
 
-In general the simplest setup goes like this:
+1. Build the Senders and the Receivers where you want them, connect with glass Tubes.
+2. Determine where you'd want the control center of your network to be. At minimum it needs to be able to accommodate
+at least one Control Block that is exposed from at least 3 sides. Plan for more if it's a major network because you'd
+likely want to have access to more commands than just the basic ones.
+3. Configure the Grid via signs.
+4. Initialize the Grid. This scans the Grid starting from the executing Control Block and actually initializes all the
+devices
 
-1. Determine where you'd want the Grid control center of your network to be.
-   At least one Control Block exposed from at least 3 sides is required.
-2. Build the Senders and the Receivers
-3. Connect all the devices with glass tubes.
-4. Configure the devices with signs.
-5. Initialize the Grid.
-   This scans the Grid starting from the executing Control Block and actually initializes all the devices.
+Note: When the Grid is enabled, it protects all its elements from unauthorized destruction so all these parts can be
+exposed to public places. If the Grid is shut down, all its elements lose protection and can be broken/changed by anyone.
 
-Note: When a Grid is enabled, it's indestructible. If the Grid is shut down, all its elements lose protection.
-Note: Some Grid Devices can be reconfigured dynamically, without switching the whole Grid off (see device descriptions).
+Certain Grid Devices allow being reconfigured dynamically, without switching the whole Grid off (see device descriptions).
 
 ## Configuring and Controlling a Grid
 
 There are two ways to configure and control a Grid:
-1. Control Signs -- used for configuring Grid Elements (blocks) on-site
-2. Console Commands -- used for various administrative commands
-
-## Control Signs
-
-A Minecraft Sign attached to a Grid Device defines and configures it.
-
-Interacting with such a Sign with a Stick either assembles the device and turns it on or performs another function according
-to the command written on the Sign.
-
-Many of the commands have additional parameters that allow for flexible granularity in setting up how your Grid works.
-
-The lines on a Sign usually serve the following functions:
-
-1. The command itself, all SX-Tube commands have the following format: `[tube:<command>]` where `<command>` is one of the commands
-   applicable to the device in question.
-2. Command parameters.
-3. One of the following, depending on the command:
-  - Item description for item filter commands
-  - Command output
-4. Command output.
-
-See each command description for details.
+1. Control Signs -- this method is used for configuring Grid Elements (blocks) in-place
+2. Console Commands -- this method is used for various administrative commands
 
 ## Permissions
 
-The owner of a Grid automatically possesses all permissions.
-All other players must be explicitly given the permissions.
+The owner of a Grid automatically possesses all permissions. However, to any other player the permissions must
+be given separately either by the owner or by another player who has the permission to alter permissions.
 
 Altering permissions for a particular player is possible with `/tubes-trust` and `/tubes-untrust` commands.
-Initially only the Grid owner can do that.
 
-Currently, there are the following permissions:
+Currently there are the following permissions:
 
 ---
 
@@ -107,8 +89,34 @@ Currently, there are the following permissions:
 
 ## Glass
 
-Glass is the tubes material. Build tubes to extend your grid.
-Colored Glass only connects to its own color. Hint: use this feature to create compact buses of different Grids.
+Serves for constructing the connecting Tubes. Glass does not currently accept any commands but Stained Glass Tubes
+can be used for separating Grids -- differently colored Glass Tubes do not intersect. Use this feature to create
+compact buses of different Grids.
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+## Control Sign
+
+A Minecraft Sign that is slapped on one of the Grid Elements and contains one of the valid commands for that type of
+Element. A Sign must be a part of one of the Grid Devices, it doesn't do anything on its own.
+
+Control Signs are usually interacted with with a Stick. Such interaction might either execute the command written on
+the Control Sign or toggle it on/off, depending on the particular command.
+
+Many of the commands have additional parameters that allow for flexible granularity in setting up how your Grid works.
+
+The lines on a sign usually serve the following functions:
+
+1. Command, all SX-Tube commands have the following format: `[tube:<command>]` where `<command>` is one of the commands
+applicable to the device in question.
+2. Command parameters.
+3. One of the following, depending on the command:
+    - Item description for item filter commands
+    - Command output
+4. Command output.
+
+See each command description for details.
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -118,19 +126,20 @@ Serves as the main port of interaction with the Grid. A Grid requires at least o
 
 Structure: a Control Block with a Control Sign on it.
 
-A Control Block supports up to 6 Control Signs on it, but one Control Block per one Control Sign is recommended for clarity.
+A Control Block supports up to 6 Control Signs on it, if you're bare on resources or space, but one Control Block per
+one Control Sign is recommended for clarity. In general SX-Tubes leans more toward having dedicated control rooms with the whole set
+of needed Control Blocks to control the Grid. In-field quick setups are of course also possible and the ability to use
+a single Control Block for executing the basic commands helps with that.
 
-Hint: You may want to group you Control Devices together in one room for the comfort of access.
-Hint: On-spot quick setups are of course also possible and the ability to use a single Control Block for executing the basic commands helps with that.
-Hint: The material of Control Block can be set in the config.
+The base block that represents the Control Block can be configured, but the default suggested variants are Netherite Block,
+Crying Obsidian Block or Iron Block. Selecting the block type allows to naturally gate the ability of a player to build
+and expand Grids depending on their progress in the game.
 
 ### Control Device Sign Commands
 
-------------------------------------------------------------------------------------------------------------------------
-
 #### Control Device: Scan
 
-This is the first ever command you execute for a Grid. It effectively creates the grid and initializes it.
+The first ever command you execute for a Grid. It effectively creates the grid and initializes it.
 
 ```
 [tube:scan]
@@ -139,31 +148,27 @@ This is the first ever command you execute for a Grid. It effectively creates th
 <owner>
 ```
 
-Parameters:
+The following parameters are supported:
 
-`id` (optional) -- an integer to serve as a fixed ID for this grid. If the ID is unavailable, the Grid will not initialize. Example: `id:42`. 
-If this parameter is not specified then every time upon Grid creation it is going to get a new ID by adding +1 to the last one.
+`id` -- an integer to serve as a fixed ID for this grid. If the ID is unavailable, the Grid will not initialize. Example: `id:42`. If this
+parameter is not specified then every time upon Grid creation it is going to get a new ID by addng +1 to the last one.
 
 Output:
 
 - `<short grid info>` -- Some technical info about the Grid, its id, the length of the glass tubes and the amount of receivers
 - `<owner>` -- Who's the Grid owner
 
-!!!NOTE!!!
-
 Scanflow:
 
-Grid scanning is implemented with an algorithm that walks the tubes from the Control Block it was executed on.
+Grid scanning is implemented with an algorithms that walks the tubes from the Control Block it was executed on.
 This phenomenon is nicknamed "Scanflow" and it influences the order in which devices are added to the Grid.
 For Receivers that means establishing an order in which they attempt to receive an item that is being sent.
-If the maximum Grid size limit is set in the config, the Scanflow stops upon reaching it.
 
 ------------------------------------------------------------------------------------------------------------------------
 
 #### Control Device: Name
 
-Gives a name to the Grid. The name is a just a hint that can be used for an easier identification. It is not required
-to be unique.
+Gives a name to your grid. The name is a hint that can be used for an easier identification of your Grid. But otherwise Grid id is superior.
 
 ```
 [tube:name]
@@ -176,10 +181,11 @@ to be unique.
 
 ------------------------------------------------------------------------------------------------------------------------
 
+
 #### Control Device: Remove
 
 Executing this command removes the associated Grid. If the command block is associated with any Grid, the ID of the Grid
-is going to be displayed in the info line. Upon successful removal the info line is going to display the "OK" status.
+is going to be displayed in the info line. Upon a successful removal execution the info line is going to display the "OK" status.
 
 ```
 [tube:remove]
@@ -192,11 +198,9 @@ Output:
 
 `<info>` describes either the currently linked Grid or a status message.
 
-------------------------------------------------------------------------------------------------------------------------
-
 #### Control Device: Config
 
-An advanced command used for detailed parametrization of various grid workings.
+An advanced command used for detailed parametrization of grid workings.
 
 ```
 [tube:config]
@@ -205,25 +209,23 @@ An advanced command used for detailed parametrization of various grid workings.
 <params>
 ```
 
-Note: All lines take in parameters.
+All lines take in parameters.
 
 Currently implemented parameters:
 
-- `ddm:<t|f>` -- Enables or disables Dynamic Device Modification. When this setting is on, some devices can be added, removed
-and modified on-spot, without turning the Grid off or re-scanning it.
+- `ddm:<t|f>` -- Enables or disables Dynamic Device Modification. When that setting is on some devices can be added, removed
+and modified without turning the Grid off or re-scanning it.
 
 ------------------------------------------------------------------------------------------------------------------------
 
 ## Sender Device 
 
-Sends items into the Grid.
-
-Structure:
-
-1. Is a __Minecraft Sticky Piston__
-2. Connected to a Grid by a Glass Tube
-3. Has an inventory block in front of it, for example a Chest.
-4. Has a Control Sign on it that describes and configures the device.
+Senders are Grid Elements that are responsible for sending items into the Grid.
+The central block of a Sender tube device is the Sender Piston, which is just a normal __Minecraft Sticky Piston__. It is recognized
+as a tube Sender device if it is:
+1. Connected to a Grid by a Glass Tube
+2. Has an inventory block in front of it, for example a Chest.
+3. Has a Control Sign on it that describes and configures the device.
 
 If Dynamic Device Modification is on, Sender Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
 
@@ -239,25 +241,24 @@ If Dynamic Device Modification is on, Sender Device can be reconfigured in a wor
 Params:
 
 - `t:<int>` -- Enables auto-send in the specified amount of game ticks. The amount can't be lower than what's specified in the plugin config to prevent spam sends.
-- `i:<t|f>` -- Enables or disables inventory-triggered sends. Sends when a player puts something into the associated inventory.
-- `s:<int>` -- Enables spread action where the associated number is the amount of items in each spread batch for a single Receiver.
+- `i:<t|f>` -- Enables or disables inventory-triggered sends. Used for executing sends when a player puts something into the associated inventory.
+- `s:<int>` -- Enables spread action where the associated number is the amount of items in each spread batch for a single receiver
 
 For example params `t:10000,i:t` would make it so that the Sender automatically sends once in 10000 ticks, but at the same time also
 instantly reacts to any events of putting the stuff manually into it.
 
-Also, Sender device can be activated by powering it with a Redstone signal.
+Also Sender device can be activated by powering it with a Redstone signal.
 
 ------------------------------------------------------------------------------------------------------------------------
 
 ## Receiver Device
 
-Receive items from the Grid.
-
-Structure:
-1. Is a __Minecraft Piston__
-2. Connected to a Grid by a Glass Tube
-3. Has an inventory block in front of it, for example a Chest.
-4. Has a Control Sign on it that describes and configures the device.
+Receivers are Grid Elements that are responsible for receiving items from the Grid.
+The central block of a Receiver tube device is the Receiver Piston, which is just a normal __Minecraft Piston__. It is recognized
+as a tube Receiver device if it is:
+1. Connected to a Grid by a Glass Tube
+2. Has an inventory block in front of it, for example a Chest.
+3. Has a Control Sign on it that describes and configures the device.
 
 If Dynamic Device Modification is on, Receiver Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
 
@@ -275,6 +276,8 @@ All Receiver Piston Control Signs first line must be one of the following:
 
 The command is simply `[tube]` because in this case the Receiver Device is automatically configured with the simplest configuration possible.
 This option is provided for simplicity because the amount of receivers in a system is assumed to be high.
+In this case only the line 2 plays any role, and it must contain the filter for which items to receive.
+
 
 Lines:
 
@@ -284,13 +287,12 @@ Lines:
 
 ## Overflow Device
 
-Collects everything that doesn't fit into other specified Receivers.
-
-Structure:
-1. Is a __Minecraft Piston__ 
-2. Connected to a Grid by a Glass Tube
-3. Has an inventory block in front of it, for example a Chest.
-4. Has a Control Sign on it that describes and configures the device.
+Overflow is a device that collects everything that doesn't fit into other specified receivers.
+The central block of an Overflow tube device is the same as for the Receiver Piston, which is just a normal __Minecraft Piston__. It is recognized
+as a tube Overflow Device if it is:
+1. Connected to a Grid by a Glass Tube
+2. Has an inventory block in front of it, for example a Chest.
+3. Has a Control Sign on it that describes and configures the device.
 
 ### Overflow Device Sign Commands
 
@@ -309,13 +311,12 @@ All Overflow Piston Control Signs first line must be one of the following:
 
 ## Requester Device
 
-Requesting particular items from the whole Grid.
-
-Structure:
-1. Is a __Minecraft Piston__
-2. Connected to a Grid by a Glass Tube
-3. Has an inventory block in front of it, for example a Chest.
-4. Has a Control Sign on it that describes and configures the device.
+Requesters are Grid Elements that are responsible for requesting particular items from the whole Grid.
+The central block of a Requester tube device is the Requester Piston, which is just a normal __Minecraft Piston__. It is recognized
+as a tube Requester device if it is:
+1. Connected to a Grid by a Glass Tube
+2. Has an inventory block in front of it, for example a Chest.
+3. Has a Control Sign on it that describes and configures the device.
 
 If Dynamic Device Modification is on, Requester Device can be reconfigured in a working Grid. Just destroy the Control Sign and re-program it.
 
@@ -330,18 +331,19 @@ If Dynamic Device Modification is on, Requester Device can be reconfigured in a 
 
 The following parameters are available:
 
-- `p:<tags>` (optional) -- specifies the Grid element types and the order in which they are polled. The following tags are available:
+- `p:<tags>` -- where "<tags>" is any combination of Grid element type tags that controls the order in which the Grid elements get polled
+  for the request. The following tags are available:
   - `r` -- receivers
   - `s` -- senders
   - `o` -- overflow
   - `q` -- other requesters
   
   If the `p` argument is not specified for the Requester then the default one from the config is used. The default value is `rso`.
-  If one of the tags is not specified, the corresponding type of elements does not get polled during the request.
-  
-  Example: `p:qo` ensures that the poll is performed first among the other Requesters and then among the Overflows, Senders or Receivers are not polled.
+  If one of the tags is not specified, the corresponding type of elements does not get polled during the request. For example, specifying
+  the `p` parameter like `p:qo` would ensure that the poll is first performed among the other Requesters and then among the Overflows, while
+  no Senders or Receivers are getting polled.
 
 The following additional configuration lines are possible:
 
-- `<item-name>` (required) -- the item name to poll for.
-- `<amount>` (required) -- the amount of the item to poll for.
+- `<item-name>` is the item name to poll for.
+- `<amount>` is the amount of the item to poll for.
