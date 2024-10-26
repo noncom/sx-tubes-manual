@@ -6,6 +6,7 @@
 - Fix a Tubes-disabling NPE that occurs sometimes when restoring from the database after a crash (https://github.com/noncom/sx-tubes/issues/4)
 - Unassign the `SxTubeTrustTabCompleter` completer from `/tubes-template`, prevents some non-critical exceptions (https://github.com/noncom/sx-tubes/issues/1)
 - Prevent `/tubes-trust` and `/tubes-untrust` from attempting to work when not enough args were passed (https://github.com/noncom/sx-tubes/issues/7)
+- Add `/tubes-about`
 
 ### Version 1.0.3
 
